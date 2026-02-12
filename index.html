@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+
+  <title>Storm AI Consulting | Efficient Business Apps & AI Automation</title>
+  <meta name="description" content="Storm AI Consulting builds efficient business apps and AI automations. Book a free 30-minute audit." />
+
+  <style>
+    /* System-following theme (Light by default, Dark if the OS prefers it) */
+    :root{
+      color-scheme: light dark;
+
+      --bg: #ffffff;
+      --surface: #f6f7f9;
+      --card: #ffffff;
+      --text: #0b1220;
+      --muted: #4b5563;
+      --border: rgba(17,24,39,.12);
+
+      --primary: #2563eb;
+      --primary-2: #0ea5e9;
+
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --shadow2: 0 6px 18px rgba(0,0,0,.06);
+
+      --max: 1100px;
+      --pad: 20px;
+
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg: #0b1220;
+        --surface: #0f172a;
+        --card: rgba(255,255,255,.06);
+        --text: rgba(255,255,255,.92);
+        --muted: rgba(255,255,255,.70);
+        --border: rgba(255,255,255,.14);
+
+        --primary: #60a5fa;
+        --primary-2: #22d3ee;
+
+        --shadow: 0 18px 60px rgba(0,0,0,.35);
+        --shadow2: 0 10px 28px rgba(0,0,0,.25);
+      }
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 var(--pad)}
+    .section{padding:72px 0}
+    .section.compact{padding:52px 0}
+
+    /* NAV */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--bg) 86%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 0;
+      gap: 12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      text-decoration:none;
+      min-width: 220px;
+    }
+    .logo{
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 10px 24px color-mix(in srgb, var(--primary) 22%, transparent);
+    }
+    .brand strong{font-weight: 850; letter-spacing:.01em}
+    .brand span{display:block; font-size:12px; color: var(--muted); margin-top:2px}
+
+    nav{
+      display:flex;
+      gap: 14px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    nav a{
+      text-decoration:none;
+      font-size: 14px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 12px;
+    }
+    nav a:hover{
+      background: color-mix(in srgb, var(--text) 6%, transparent);
+      color: var(--text);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--text) 5%, transparent);
+      text-decoration:none;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: var(--shadow2);
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .btn:active{transform: translateY(0)}
+    .btn.primary{
+      border-color: color-mix(in srgb, var(--primary) 45%, transparent);
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      box-shadow: 0 16px 44px color-mix(in srgb, var(--primary) 18%, transparent);
+    }
+    .btn.ghost{
+      background: transparent;
+      box-shadow:none;
+    }
+
+    /* HERO */
+    .hero{
+      padding: 58px 0 18px;
+      background:
+        radial-gradient(700px 280px at 10% 10%, color-mix(in srgb, var(--primary) 22%, transparent), transparent 60%),
+        radial-gradient(700px 280px at 90% 20%, color-mix(in srgb, var(--primary-2) 18%, transparent), transparent 55%);
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(34px, 4vw, 56px);
+      line-height: 1.03;
+      letter-spacing: -.02em;
+    }
+    .lead{
+      margin: 0 0 18px;
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 64ch;
+    }
+    .actions{display:flex; gap:12px; flex-wrap:wrap; margin-top: 14px}
+    .badges{display:flex; gap:10px; flex-wrap:wrap; margin-top: 16px}
+    .badge{
+      display:inline-flex; gap:8px; align-items:center;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--text) 4%, transparent);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .badge b{color: var(--text)}
+
+    .panel{
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .panel h3{margin: 0 0 6px; font-size: 16px}
+    .panel p{margin: 0; color: var(--muted); line-height:1.6; font-size: 14px}
+    .bullets{margin-top: 12px; display:grid; gap:10px}
+    .bullet{
+      display:flex; gap: 10px; align-items:flex-start;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--text) 3%, transparent);
+    }
+    .tick{
+      width: 22px; height: 22px;
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--primary) 18%, transparent);
+      border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+      display:flex; align-items:center; justify-content:center;
+      flex:0 0 22px;
+    }
+    .bullet strong{display:block; font-size: 14px; margin-bottom: 2px}
+    .bullet span{display:block; font-size: 13px; color: var(--muted); line-height:1.5}
+
+    /* CARDS */
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+      box-shadow: var(--shadow2);
+      padding: 18px;
+    }
+    .card h3{margin: 6px 0 8px; font-size: 17px}
+    .card p{margin: 0; color: var(--muted); line-height:1.6; font-size:14px}
+    .card ul{margin: 12px 0 0; padding-left: 18px; color: var(--muted); line-height:1.75; font-size:14px}
+
+    /* PROCESS */
+    .steps{display:grid; gap: 12px; margin-top: 18px}
+    .step{
+      display:flex; gap: 12px; align-items:flex-start;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+      box-shadow: var(--shadow2);
+    }
+    .num{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--primary) 18%, transparent);
+      border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+      display:flex; align-items:center; justify-content:center;
+      font-weight: 900;
+      flex: 0 0 34px;
+    }
+    .step h4{margin: 2px 0 6px; font-size: 16px}
+    .step p{margin:0; color: var(--muted); line-height:1.6; font-size:14px}
+
+    /* FAQ */
+    details{
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-top: 10px;
+      box-shadow: var(--shadow2);
+    }
+    summary{cursor:pointer; font-weight: 800}
+    details p{margin: 10px 0 0; color: var(--muted); line-height:1.7}
+
+    /* CTA STRIP */
+    .cta{
+      margin-top: 18px;
+      border-radius: calc(var(--radius) + 4px);
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(135deg,
+          color-mix(in srgb, var(--primary) 16%, var(--card)),
+          color-mix(in srgb, var(--primary-2) 14%, var(--card))
+        );
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .cta h3{margin:0 0 6px; font-size: 18px}
+    .cta p{margin:0; color: var(--muted); line-height:1.6; font-size:14px}
+
+    /* CONTACT */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .field{display:grid; gap:8px; margin-top: 12px}
+    label{font-size: 13px; color: var(--muted)}
+    input, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border:1px solid var(--border);
+      background: color-mix(in srgb, var(--text) 3%, transparent);
+      color: var(--text);
+      outline:none;
+      font-family: var(--font);
+    }
+    textarea{min-height: 120px; resize: vertical}
+    input:focus, textarea:focus{
+      border-color: color-mix(in srgb, var(--primary-2) 60%, transparent);
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--primary-2) 18%, transparent);
+    }
+    footer{
+      border-top: 1px solid var(--border);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .foot{
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      flex-wrap:wrap;
+    }
+    .foot a{color: var(--muted); text-decoration:none}
+    .foot a:hover{color: var(--text)}
+
+    /* Mobile */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns: 1fr}
+      .grid-3{grid-template-columns: 1fr}
+      .contact-grid{grid-template-columns: 1fr}
+      nav{display:none}
+    }
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .btn:hover{transform:none}
+    }
+  </style>
+</head>
+
+<body>
+  <header id="top">
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Storm AI Consulting home">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <strong>Storm AI Consulting</strong>
+            <span>Efficient business apps + AI automation</span>
+          </div>
+        </a>
+
+        <nav aria-label="Primary">
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <a class="btn primary" href="#contact">Free Audit</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <h1>Efficient business apps & AI automation that save time.</h1>
+            <p class="lead">
+              I help teams streamline operations with custom apps, workflow automation, and practical AI
+              (LLM/RAG knowledge systems, semantic search, and intelligent routing) — built end-to-end and ready for production.
+            </p>
+
+            <div class="actions">
+              <a class="btn primary" href="#contact">Book Free 30‑Min Audit</a>
+              <a class="btn ghost" href="mailto:mail@stormschutte.com?subject=Free%20Audit%20Request%20-%20Storm%20AI%20Consulting">Email Me</a>
+            </div>
+
+            <div class="badges" aria-label="Credibility highlights">
+              <div class="badge"><b>16+ years</b> building software</div>
+              <div class="badge"><b>AI/ML</b> + full-stack delivery</div>
+              <div class="badge"><b>AWS/GCP/Azure</b> cloud-ready</div>
+            </div>
+          </div>
+
+          <aside class="panel" aria-label="What you get">
+            <h3>Free App Efficiency & Automation Audit</h3>
+            <p>In 30 minutes, we identify your fastest wins and map the most practical next step.</p>
+
+            <div class="bullets">
+              <div class="bullet">
+                <div class="tick" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Clarity on what to build first</strong>
+                  <span>Prioritize the 1–3 changes that remove the most friction.</span>
+                </div>
+              </div>
+
+              <div class="bullet">
+                <div class="tick" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Automation opportunities</strong>
+                  <span>Spot repetitive work that can be automated safely and reliably.</span>
+                </div>
+              </div>
+
+              <div class="bullet">
+                <div class="tick" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>A plan you can act on</strong>
+                  <span>Clear next steps (even if you don’t hire me).</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact" id="services">
+      <div class="wrap">
+        <h2 style="margin:0 0 10px; font-size:32px; letter-spacing:-.01em;">Services</h2>
+        <p class="lead" style="margin-top:0;">Practical systems that reduce friction and deliver measurable operational improvement.</p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Custom Business Apps</h3>
+            <p>Internal tools, dashboards, portals, and MVP builds that fit your workflow.</p>
+            <ul>
+              <li>Admin dashboards, reporting, workflow tracking</li>
+              <li>Client portals and self-service tools</li>
+              <li>SaaS MVP build + launch support</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>AI Automation (LLM/RAG)</h3>
+            <p>Use AI where it creates real value: speed, accuracy, and consistency.</p>
+            <ul>
+              <li>Email/document intake → validation → routing</li>
+              <li>RAG knowledge assistant (policies, SOPs, docs)</li>
+              <li>Semantic search + vector databases</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Cloud + Performance</h3>
+            <p>Modern deployment, scaling, monitoring, and optimization.</p>
+            <ul>
+              <li>AWS / GCP / Azure architecture</li>
+              <li>CI/CD, observability, uptime improvements</li>
+              <li>Speed optimization + caching strategies</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cta" role="region" aria-label="Call to action">
+          <div>
+            <h3>Want to know what to automate first?</h3>
+            <p>Book a free 30-minute audit and I’ll map your fastest path to a smoother operation.</p>
+          </div>
+          <a class="btn primary" href="#contact">Book Free Audit</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="wrap">
+        <h2 style="margin:0 0 10px; font-size:32px; letter-spacing:-.01em;">Process</h2>
+        <p class="lead" style="margin-top:0;">Fast clarity, weekly progress, production-ready results.</p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="num">1</div>
+            <div>
+              <h4>Free audit call</h4>
+              <p>We review your workflow, pain points, and the highest-impact improvements.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="num">2</div>
+            <div>
+              <h4>Plan + proposal</h4>
+              <p>You get a clear scope, timeline, and architecture approach.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="num">3</div>
+            <div>
+              <h4>Build in sprints</h4>
+              <p>Weekly deliverables, constant feedback, and visible progress.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="num">4</div>
+            <div>
+              <h4>Launch + optimize</h4>
+              <p>Deploy, monitor, improve reliability, and iterate based on real usage.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact" id="faq">
+      <div class="wrap">
+        <h2 style="margin:0 0 10px; font-size:32px; letter-spacing:-.01em;">FAQ</h2>
+
+        <details>
+          <summary>Do I need AI for my project?</summary>
+          <p>Not always. Many wins come from building the right workflow app first. AI is added where it improves speed, accuracy, or decision-making.</p>
+        </details>
+
+        <details>
+          <summary>What happens on the free audit?</summary>
+          <p>We identify bottlenecks, clarify goals, and pick the top 1–3 improvements with the highest ROI. You’ll leave with a practical plan and next steps.</p>
+        </details>
+
+        <details>
+          <summary>How fast can you deliver?</summary>
+          <p>Most projects start with a quick-win sprint. You’ll see progress weekly with working deliverables early.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap">
+        <h2 style="margin:0 0 10px; font-size:32px; letter-spacing:-.01em;">Contact</h2>
+        <p class="lead" style="margin-top:0;">Book your free audit — tell me what you’re trying to improve.</p>
+
+        <div class="contact-grid">
+          <div class="card">
+            <h3 style="margin:0 0 6px;">Fastest options</h3>
+            <p style="margin:0; color:var(--muted); line-height:1.7;">
+              Use email or a booking link. Replace the booking URL with your Calendly later.
+            </p>
+
+            <div class="actions" style="margin-top:14px;">
+              <a class="btn primary" href="https://calendly.com/" target="_blank" rel="noopener">Open Booking Link</a>
+              <a class="btn" href="mailto:mail@stormschutte.com?subject=Free%20Audit%20Request%20-%20Storm%20AI%20Consulting">Email: mail@stormschutte.com</a>
+            </div>
+
+            <p style="margin:12px 0 0; color:var(--muted); font-size:13px; line-height:1.6;">
+              Tip: Want a real form (no email client)? Use Formspree or Netlify Forms.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 style="margin:0 0 6px;">Quick message form</h3>
+            <p style="margin:0; color:var(--muted); line-height:1.7;">This opens your email client with a prefilled message.</p>
+
+            <form id="mailtoForm">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" placeholder="Your name" autocomplete="name" />
+              </div>
+
+              <div class="field">
+                <label for="company">Company</label>
+                <input id="company" name="company" placeholder="Company name" autocomplete="organization" />
+              </div>
+
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" placeholder="you@company.com" autocomplete="email" />
+              </div>
+
+              <div class="field">
+                <label for="message">What do you want to improve?</label>
+                <textarea id="message" name="message" placeholder="Example: We waste time processing emails and updating spreadsheets. We need a workflow tool + automation."></textarea>
+              </div>
+
+              <div class="actions" style="margin-top:12px;">
+                <button class="btn primary" type="submit">Send Message</button>
+                <a class="btn ghost" href="#services">View Services</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <div class="foot">
+          <div>© <span id="year"></span> Storm AI Consulting.</div>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a href="#top">Back to top</a>
+            <a href="https://stormschutte.com" target="_blank" rel="noopener">stormschutte.com</a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mailto form (no backend needed)
+    document.getElementById('mailtoForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const v = (id) => (document.getElementById(id).value || "").trim();
+      const subject = encodeURIComponent('Free Audit Request - Storm AI Consulting');
+
+      const body = [
+        `Name: ${v('name')}`,
+        `Company: ${v('company')}`,
+        `Email: ${v('email')}`,
+        ``,
+        `Message:`,
+        v('message'),
+        ``,
+        `Preferred times (optional):`,
+      ].join('\n');
+
+      const recipient = 'mail@stormschutte.com';
+      window.location.href = `mailto:${recipient}?subject=${subject}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>
